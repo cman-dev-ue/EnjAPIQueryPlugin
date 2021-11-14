@@ -1,0 +1,13 @@
+{
+	"FileVersion": 3,
+	"EngineAssociation": "4.26",
+	"Category": "",
+	"Description": "",
+	"Plugins": [
+        {
+            "Name": "EnjAPIQuery",
+            "Enabled": true,
+            "MarketplaceURL": "com.epicgames.launcher://ue/marketplace/product/1b24880a8f554ecc9f154caa19a4d9ba"
+        }
+	]
+}
