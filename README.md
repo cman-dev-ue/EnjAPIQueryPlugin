@@ -1,10 +1,17 @@
 # EnjAPIQuery Plugin
 ![image](https://user-images.githubusercontent.com/89269028/130444264-3ab200c2-ac74-4c29-a0ba-e2d10a245c7b.png)
 
+## Quick jump
+[Description](#description)
+[Documentation v1](#documentation_v1)
+[Documentation v2](#documentation_v2)
+[Misc](#misc)
+
+<a name="description"></a>
 ## Description
 The  EnjAPIQuery Plugin is made to help game developers using Unreal Engine to send queries to the Enjin GraphQL API.
 
-You will be able to access Enjin's Mainnet, Jumpnet and Kovan Testnet with this plugin.
+You will be able to access Enjin's Mainnet, Jumpnet and Goerli Testnet with this plugin.
 
 > Cryptocurrency is growing more and more and 2021 is the year of NFT's!
 >
@@ -24,7 +31,8 @@ By using this plugin you will be able to use the Enjin API with Blueprints!
 - Send ENJs
 - And more...
 
-## Documentation
+<a name="documentation_v1"></a>
+## Documentation (v1)
 With the plugin you can easily create Queries for the GraphQL Enjin API.
 
 It only takes a few steps to create a query, send it and get the result:
@@ -64,15 +72,40 @@ Please report any missing parameter or incorrect parameter.
 
 ![image](https://user-images.githubusercontent.com/89269028/130444325-b03c417e-dfb2-40c9-8aa8-763025cf9401.png)
 
+<a name="documentation_v2"></a>
+## Documentation (v2)
+All functions are implemented and turned into async function. The goal was to reduce the necessity of casting the objects by having a generic query.
+
+As an example, the first thing you will probably have to do is to authenticate your project. This can be easily done by calling the `Auth Project` function. You need to set the project `uuid` and `secret`, the `URL` and what you want to get as a return from the query. Only what you write in the `Query Return` input pin will be populated in the object in the output pin (`Auth` in this case).
+
+Since the function is async, you can do anything with the top execution pin and it will run while the query is sent. The `On Complete` exec pin will be triggered when the query is done. You can check the boolean value `Success` to see if the query was successful or not. If `Success` is `false` the Array `Errors` will be populated with the errors returned by the API. Otherwise, you can safely access the `Auth` object properties!
+
+![image](https://user-images.githubusercontent.com/89269028/232449326-caaa0cb6-6ce2-4b78-971c-385b0c202d01.png)
+
+I also decided to add the whole response body as an output pin if you need to debug something.
+
+For some functions you will see an input that will be an Array of Input object reference. For each of these object you have an associated `Construct Object Input` as shown here:
+
+![image](https://user-images.githubusercontent.com/89269028/232452084-65e2574f-75fd-40d9-9074-4e7ac9cb3489.png)
+
+Few mutations will only return a boolean value and don't have a `Query Return` input pin. Note that 2 booleans are returned in the output pins.
+
+![image](https://user-images.githubusercontent.com/89269028/232452657-282b920e-3655-4359-a13e-94fe5dc5ee47.png)
+
+`Request Success` will tell you if the HTTP request succeeded or not (wrong URL, parameter...).
+`Mutation Return` will tell you the result from the Enjin API.
+
+<a name="misc"></a>
+
 ### About the App token
 The App Token is a critical data and you should always make sure nobody can access it.
 
 ### Enjin GraphQL documentation
-You can find all the queries that you can make on the Enjin GraphQL API (Mainnet, Jumpnet, Kovan Testnet).
+You can find all the queries that you can make on the Enjin GraphQL API (Mainnet, Jumpnet, Goerli Testnet).
 
 ### Links
 - Discord support server : https://discord.gg/49m4aZeYRZ
 - Enjin Website : https://enjin.io/
 - Enjin Mainnet : https://cloud.enjin.io/graphiql/
-- Enjin Kovan Testnet : https://kovan.cloud.enjin.io/graphiql
+- Enjin Goerli Testnet : https://goerli.cloud.enjin.io/graphiql
 - Enjin Jumpnet : https://jumpnet.cloud.enjin.io/graphiql
