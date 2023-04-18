@@ -3,8 +3,11 @@
 
 ## Quick jump
 [Description](#description)
+
 [Documentation v1](#documentation_v1)
+
 [Documentation v2](#documentation_v2)
+
 [Misc](#misc)
 
 <a name="description"></a>
@@ -93,6 +96,7 @@ Few mutations will only return a boolean value and don't have a `Query Return` i
 ![image](https://user-images.githubusercontent.com/89269028/232452657-282b920e-3655-4359-a13e-94fe5dc5ee47.png)
 
 `Request Success` will tell you if the HTTP request succeeded or not (wrong URL, parameter...).
+
 `Mutation Return` will tell you the result from the Enjin API.
 
 <a name="misc"></a>
